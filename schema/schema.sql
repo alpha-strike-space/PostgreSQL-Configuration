@@ -20,10 +20,10 @@ CREATE TABLE IF NOT EXISTS systems
 (
    id SERIAL PRIMARY KEY,
    solar_system_id BIGINT,
-   solar_system_name VARCHAR(255),
-   x TEXT,
-   y TEXT,
-   z TEXT
+   solar_system_name TEXT,
+   x DOUBLE PRECISION,
+   y DOUBLE PRECISION,
+   z DOUBLE PRECISION
 );
 /*
         Create a trigger.
