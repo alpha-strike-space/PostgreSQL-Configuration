@@ -1,6 +1,17 @@
 # PostgreSQL-Data-Tables
 This is the implementation of the database tables and their respective schema. We can't forget about the bouncer which handles transactions across a pooled connection.
 
+## Notable Documentation Sources
+https://www.pgbouncer.org/
+
+https://www.postgresql.org/docs/
+
+https://pgdash.io/blog/pgbouncer-connection-pool.html
+
+## Important Notes:
+The pgbouncer handles connections on a different port which is then routed internally to the postgresql database. This allows us to set the size of connections we may handle transactions at anyone time. Ths pgbouncer pools transactions and may cache the connections to reconnect to the datbase when restarting. This allows for seamless maintenance on the database without having to reset connections or deal with threading issues. 
+
+Please be aware that not every hosting service will provide sudo privileges and it is not necessary for every setup. This documentation is just a template for those trying to set up the service.
 
 # PostgreSQL & PgBouncer Setup (Linux & BSD)
 
