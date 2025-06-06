@@ -172,5 +172,3 @@ sudo service pgbouncer start
 ```
 
 ---
-
-Edit and expand this markdown as needed for your environment!
