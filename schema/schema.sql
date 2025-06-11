@@ -5,8 +5,10 @@ CREATE TABLE IF NOT EXISTS incident
 (
     id SERIAL PRIMARY KEY,
     victim_address VARCHAR (255),
+    victim_id TEXT,
     victim_name VARCHAR (255),
     killer_address VARCHAR(255),
+    killer_id TEXT,
     killer_name VARCHAR(255),
     solar_system_id BIGINT,
     loss_type VARCHAR(255),
