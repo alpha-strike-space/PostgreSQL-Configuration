@@ -51,10 +51,10 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 /*
-      Precomputed index to speed up requests related to time filtration, LDAP format.
+      Precomputed index to speed up requests related to time filtration, UNIX format. Prior iterations had LDAP.
 */
 CREATE INDEX idx_incident_converted_ts
-ON incident (to_timestamp((time_stamp - 116444736000000000) / 10000000.0));
+ON incident (((time_stamp - 116444736000000000) / 10000000.0));
 /*
       Precomputed index to speed up requests regarding name search for totals.
 */
