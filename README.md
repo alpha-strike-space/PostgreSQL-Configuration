@@ -93,15 +93,14 @@ From your schema directory:
 */
 CREATE TABLE IF NOT EXISTS incident
 (
-    id SERIAL PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     victim_address VARCHAR (255),
     victim_name VARCHAR (255),
     killer_address VARCHAR(255),
     killer_name VARCHAR(255),
     solar_system_id BIGINT,
     loss_type VARCHAR(255),
-    time_stamp BIGINT,
-    UNIQUE (victim_name, time_stamp)
+    time_stamp BIGINT
 );
 /*
         Create systems table.
