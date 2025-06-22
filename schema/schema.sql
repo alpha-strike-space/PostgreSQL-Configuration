@@ -26,13 +26,36 @@ CREATE TABLE IF NOT EXISTS systems
    y DOUBLE PRECISION,
    z DOUBLE PRECISION
 );
-/*
-        Create a trigger.
-*/
-CREATE TRIGGER incident_notify_trigger
-AFTER INSERT ON incident
-FOR EACH ROW
-EXECUTE FUNCTION notify_incident_trigger();
+
+--------------------------------
+---      Character table     ---
+--------------------------------
+CREATE TABLE IF NOT EXISTS characters
+(
+        address BYTEA PRIMARY KEY, --- blockchain address
+        name VARCHAR(255),
+        id NUMERIC(78),            --- character id, 78 digits
+        tribe_id INTEGER,
+        eve_balance_in_wei NUMERIC(78),
+        gas_balance_in_wei NUMERIC(78),
+        protrait_url TEXT
+);
+
+--------------------------------
+---  Smart Assemblies Table  ---
+--------------------------------
+CREATE TABLE IF NOT EXISTS smart_assemblies
+(
+        id NUMERIC(78) PRIMARY KEY, -- Fits a 256bit unsigned int
+        character_address BYTEA REFERENCES characters(address),
+        type VARCHAR(50),
+        name VARCHAR(255),
+        state VARCHAR(50),
+        solar_system_id INTEGER REFERENCES systems(solar_system_id),
+        energy_usage INTEGER,
+        type_id INTEGER
+);
+
 /*
         Send payload to a listener channel.
 */
@@ -49,6 +72,15 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+
+/*
+        Create a trigger.
+*/
+CREATE TRIGGER incident_notify_trigger
+AFTER INSERT ON incident
+FOR EACH ROW
+EXECUTE FUNCTION notify_incident_trigger();
+
 /*
       Precomputed index to speed up requests related to time filtration, UNIX format. Prior iterations had LDAP.
 */
