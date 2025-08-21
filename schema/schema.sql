@@ -20,6 +20,8 @@ CREATE TABLE IF NOT EXISTS incident
 CREATE TABLE IF NOT EXISTS systems
 (
    id SERIAL PRIMARY KEY,
+   region_id BIGINT,
+   constellation_id BIGINT,
    solar_system_id BIGINT UNIQUE,
    solar_system_name TEXT,
    x DOUBLE PRECISION,
